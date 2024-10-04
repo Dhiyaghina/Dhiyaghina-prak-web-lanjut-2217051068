@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/profile/{nama}', [ProfileController::class,'profile']);
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/user/profile', [UserController::class,'profile']);
+Route::get('/user/create', [UserController::class,'create']);
+Route::post('/user/store', [UserController::class,'store'])->name('user.store');
+// Route::get('/profile/create',[ProfileController::class, 'store'] );
+// Route::post('/profile/create',[ProfileController::class, 'store_request'] );
