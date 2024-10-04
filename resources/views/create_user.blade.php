@@ -55,21 +55,33 @@
         <h3>Silahkan Mengisi Data Berikut :</h3>
 
         <label for="nama" class="form-label">Nama</label> <br>
-        <input type="text" id="nama" name="nama" class="form-control" value="{{ old('nama') }}" required placeholder="Masukkan nama lengkap"> <br>
+        <input type="text" id="nama" name="nama" class="form-control" value="{{ old('nama') }}" required placeholder="Masukkan nama lengkap"> 
+        @error('nama')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+        <br>
         <br>
 
         <label for="npm" class="form-label">NPM</label><br>
-        <input type="text" id="npm" name="npm" class="form-control" value="{{ old('npm') }}" required placeholder="Masukkan NPM"> <br>
+        <input type="text" id="npm" name="npm" class="form-control" value="{{ old('npm') }}" required placeholder="Masukkan NPM"> 
+        @error('npm')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+        <br>
         <br> 
 
 
         <label for="kelas" class="form-label">Kelas</label><br>
-        <input type="text" id="kelas" name="kelas" class="form-control" value="{{ old('kelas') }}" required placeholder="Masukkan NPM"> <br>
-        <!-- <select name="kelas_id" id="kelas_id" required>
-        </select> -->
+        <select name="kelas_id" id="kelas_id" required>
+            @foreach ($kelas as $kelasItem)
+                <option value="{{ $kelasItem->id }}" {{ old('kelas_id') == $kelasItem->id ? 'selected' : '' }}>{{ $kelasItem->nama_kelas }}</option>
+            @endforeach
+        </select>
 
         <button type="submit" class="btn">SUBMIT</button>
-                           
+        @error('kelas_id')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror                  
     </div>
 </div>
 </form>
