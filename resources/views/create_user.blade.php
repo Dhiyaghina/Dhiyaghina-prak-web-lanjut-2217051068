@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +9,11 @@
     <title>Create User</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <style>
-        body{
+        body {
             font-family: "Raleway", sans-serif;
             font-optical-sizing: auto;
             font-style: normal;
-            background : pink;
+            background: pink;
             background-size: cover;
             background-position: center -20px;
         }
@@ -28,7 +31,8 @@
             width: 100%;
             align-self: center;
         }
-        .btn{
+
+        .btn {
             padding-top: 5px;
             font-size: 15px;
             display: flex;
@@ -37,8 +41,9 @@
             height: 35px;
             color: white;
             padding-left: 7px;
-            background-color : #6482AD;
+            background-color: #6482AD;
         }
+
         .text-danger {
             color: red;
             font-size: 12px;
@@ -47,44 +52,31 @@
     </style>
 </head>
 <body>
-
-<form action="{{ route('user.store') }}" method="POST">
-    @csrf
     <div class="card">
-    <div class="container">
-        <h3>Silahkan Mengisi Data Berikut :</h3>
+        <form action="{{ route('user.store') }}" method="POST">
+            @csrf
+            
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama"><br>
+            @error('nama')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
 
-        <label for="nama" class="form-label">Nama</label> <br>
-        <input type="text" id="nama" name="nama" class="form-control" value="{{ old('nama') }}" required placeholder="Masukkan nama lengkap"> 
-        @error('nama')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
-        <br>
-        <br>
+            <label for="npm">NPM:</label>
+            <input type="text" id="npm" name="npm"><br>
+            @error('npm')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
 
-        <label for="npm" class="form-label">NPM</label><br>
-        <input type="text" id="npm" name="npm" class="form-control" value="{{ old('npm') }}" required placeholder="Masukkan NPM"> 
-        @error('npm')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
-        <br>
-        <br> 
+            <label for="kelas">Kelas:</label>
+            <select name="kelas_id" id="kelas">
+                @foreach ($kelas as $kelasItem)
+                    <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
+                @endforeach
+            </select>
 
-
-        <label for="kelas" class="form-label">Kelas</label><br>
-        <select name="kelas_id" id="kelas_id" required>
-            @foreach ($kelas as $kelasItem)
-                <option value="{{ $kelasItem->id }}" {{ old('kelas_id') == $kelasItem->id ? 'selected' : '' }}>{{ $kelasItem->nama_kelas }}</option>
-            @endforeach
-        </select>
-
-        <button type="submit" class="btn">SUBMIT</button>
-        @error('kelas_id')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror                  
+            <button type="submit" class="btn">Submit</button>
+        </form>
     </div>
-</div>
-</form>
-
 </body>
-</html>
+@endsection
