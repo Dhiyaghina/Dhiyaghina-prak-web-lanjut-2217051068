@@ -17,4 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/profile', [ProfileController::class,'profile']);
+Route::get('/profile/{nama}', [ProfileController::class,'profile']);
+Route::get('/', function () {
+    return view('welcome');
+});
