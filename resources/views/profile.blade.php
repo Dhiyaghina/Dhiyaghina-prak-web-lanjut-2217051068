@@ -62,9 +62,10 @@ body{
 <div class="card">
 <div class="container">
     <h1>Profile User</h1> <br>
-    <p>Nama : {{ $nama }}</p> <br>
-    <p>NPM : {{$npm}}</p> <br>
-    <p>Kelas : {{ $kelas_id ?? 'Kelas tidak ditemukan' }}</p>
+    <img src="{{ asset("/upload/img/" . $user->foto)  }}" style="width: 200px; height: 200px;" alt="">
+    <p>Nama : {{ $user->nama }}</p> <br>
+    <p>NPM : {{$user->npm}}</p> <br>
+    <p>Kelas : {{ $user->kelas_id ?? 'Kelas tidak ditemukan' }}</p>
 </div>
 </div>
 </body>

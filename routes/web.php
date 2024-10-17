@@ -19,11 +19,13 @@ Route::get('/', function () {
 });
 
 Route::get('/user/profile', [UserController::class,'profile']);
-Route::get('/user/create', [UserController::class,'create']);
+Route::get('/user/create', [UserController::class,'create'])->name('users.create');
 Route::post('/user/store', [UserController::class,'store'])->name('user.store');
 Route::post('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/user', [UserController::class, 'index']);
-
+Route::get('/show/{id}', [UserController::class,'show'])->name('users.show');
+Route::put('/user/{id}', [UserController::class,'update'])->name('users.update');
+Route::get('/user/{id}/edit', [UserController::class,'edit'])->name('users.edit');
 
 // Route::get('/profile/create',[ProfileController::class, 'store'] );
 // Route::post('/profile/create',[ProfileController::class, 'store_request'] );
