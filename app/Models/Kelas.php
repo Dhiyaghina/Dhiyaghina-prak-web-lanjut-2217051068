@@ -9,17 +9,16 @@ class Kelas extends Model
 {
     use HasFactory;
 
-    // Perbaikan: Tambahkan titik koma di akhir deklarasi
-    protected $table = 'kelas';  // Perbaiki dengan menambahkan ';'
+    protected $guarded = ['id'];
+    protected $table = 'kelas';
 
     public function getKelas(){
         return $this->all();
     }
 
-    protected $guarded = ['id'];
-
-    // Relasi hasMany dengan model UserModel
     public function user(){
         return $this->hasMany(UserModel::class, 'kelas_id');
     }
+
+
 }
