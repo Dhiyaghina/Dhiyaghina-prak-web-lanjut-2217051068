@@ -1,51 +1,40 @@
 @extends('layouts.app')
 
-@section ('content')
+@section('content')
 <div class="mb-3 mt-2 m-3">
     <a href="{{ route('users.create') }}" class="btn btn-success">Tambah User</a>
 </div>
 
 <div class="container mt-5">
     <h1 class="text-center">List Data</h1><br>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nama</th>
-                <th scope="col">NPM</th>
-                <th scope="col">Kelas</th>
-                <th scope="col">Foto</th>
-                <th scope="col">Aksi</th>
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
+    
+    <div class="row">
         @foreach ($users as $user) 
-            <tr>
-                <td><?= $user['id'] ?></td>
-                <td><?= $user['nama'] ?></td>
-                <td><?= $user['npm'] ?></td>
-                <td><?= $user['nama_kelas'] ?></td>
-                <td>
-                    <img src="{{ asset('/upload/img/' . $user->foto) }}" alt="Foto User" width="100">
-                </td>
-                <td>
-                    <!-- View -->
+        <div class="col-md-4">
+            <div class="card mb-4" style="width: 18rem;">
+                <img class="card-img-top" src="{{ asset('/upload/img/' . $user->foto) }}" alt="Foto User" width="100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $user['nama'] }}</h5>
+                    <p class="card-text">
+                        <strong>ID:</strong> {{ $user['id'] }}<br>
+                        <strong>NPM:</strong> {{ $user['npm'] }}<br>
+                        <strong>Kelas:</strong> {{ $user['nama_kelas'] }}<br>
+                        <strong>Jurusan:</strong> {{ $user['jurusan'] }}<br>
+                        <strong>Semester:</strong> {{ $user['semester'] }}
+                    </p>
                     <a href="{{ route('user.show', $user['id']) }}" class="btn btn-primary btn-sm">View</a>
-
-                    <!-- Edit -->
                     <a href="{{ route('user.edit', $user['id']) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                    <!-- Delete -->
                     <form action="{{ route('user.destroy', $user['id']) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm"
+                        <button type="submit" class="btn btn-danger btn-sm" 
                             onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">Delete</button>
                     </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
 </div>
 @endsection

@@ -50,6 +50,8 @@ public function store(Request $request)
         'nama' => 'required|string|max:255',
         'npm' => 'required|string|max:255',
         'kelas_id' => 'required|integer',
+        'jurusan'=> 'required|string|max:255',
+        'semester' => 'required|integer',
         'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
@@ -67,6 +69,8 @@ public function store(Request $request)
         'nama' => $request->input('nama'),
         'npm' => $request->input('npm'),
         'kelas_id' => $request->input('kelas_id'),
+        'jurusan'=> $request->input('jurusan'),
+        'semester'=> $request->input('semester'),
         'foto' => $filename  // Simpan path relatif
     ]);
 
@@ -88,6 +92,8 @@ public function update(Request $request, $id){
     // Update data user lainnya
     $user->nama = $request->nama;
     $user->npm = $request->npm;
+    $user->jurusan = $request->jurusan;
+    $user->semester = $request->semester;
     $user->kelas_id = $request->kelas_id;
 
     // Cek apakah ada file foto yang di-upload

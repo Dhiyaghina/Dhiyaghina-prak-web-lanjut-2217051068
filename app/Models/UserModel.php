@@ -16,6 +16,8 @@ class UserModel extends Model
         'nama',
         'npm',
         'kelas_id',
+        'jurusan',
+        'semester',
         'foto',
     ];
 

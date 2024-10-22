@@ -20,6 +20,16 @@
                 <input type="text" class="form-control" name="npm" id="npm" placeholder="NPM anda">
             </div>
 
+            <div class="mb-3">
+                <label for="jurusan" class="form-label">Jurusan</label>
+                <input type="text" class="form-control" name="jurusan" id="jurusan" placeholder="jurusan anda">
+            </div>
+
+            <div class="mb-3">
+                <label for="semester" class="form-label">Semester</label>
+                <input type="text" class="form-control" name="semester" id="semester" placeholder="semester anda">
+            </div>
+
             <label for="kelas">Kelas</label>
             <select class="form-select" name="kelas_id" id="kelas_id">
                 @foreach ($kelas as $kelasItem)

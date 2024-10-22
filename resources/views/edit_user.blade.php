@@ -30,7 +30,19 @@
                     {{ $kelasItem->nama_kelas }}
                 </option>
                 @endforeach
-            </select><br>
+            </select>
+
+            <div class="mb-3">
+                <label for="jurusan" class="form-label">Jurusan</label>
+                <input type="text" class="form-control" name="jurusan" id="jurusan" value="{{ old('jurusan', $user->jurusan) }}"
+                    placeholder="Jurusan anda">
+            </div>
+
+            <div class="mb-3">
+                <label for="semester" class="form-label">Jurusan</label>
+                <input type="text" class="form-control" name="semester" id="semester" value="{{ old('npm', $user->npm) }}"
+                    placeholder="Jurusan anda">
+            </div>
 
             <div class="mb-3">
                 <label for="foto" class="form-label">Foto</label>
