@@ -13,27 +13,18 @@ class UserModel extends Model
     protected $guarded = ['id'];
 
     protected $fillable = [
-        'nama','npm','kelas_id','foto',
+        'nama',
+        'npm',
+        'kelas_id',
+        'foto',
     ];
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-        // Inisialisasi properti jika diperlukan
+    public function getUser(){
+        return $this->join('kelas', 'kelas.id', '=', 'user.kelas_id')->select('user.*', 'kelas.nama_kelas as nama_kelas')->get();
     }
+
+
     public function kelas(){
-        return $this->belongsTo(Kelas::class,'kelas_id');
-    }
-
-    public function getUser($id=null){
-        if($id != null){
-        return $this->join('kelas','kelas.id', '=',
-        'user.kelas_id')->select('user.*','kelas.nama_kelas')
-        ->select('user.*','kelas.nama_kelas')
-        ->where('user.id', $id)
-        ->first();
-
-}
-
+        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 }
